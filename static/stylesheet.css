@@ -1,0 +1,10 @@
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+.box {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 50%;
+}

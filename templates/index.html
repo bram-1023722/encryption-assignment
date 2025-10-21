@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Symmetric Encryption</title>
+    <link rel="stylesheet" href="/static/stylesheet.css"/>
+  </head>
+  <body>
+    <h1>Symmetric Encryption (AES-256-GCM)</h1>
+    {% with msgs = get_flashed_messages() %}
+      {% if msgs %}
+        <div class="alert">{{ msgs[0] }}</div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="box">
+      <div class="col">
+        <div class="card">
+          <h2>Encrypt</h2>
+          <form method="post" action="/encrypt">
+            <textarea name="plaintext" rows="6" placeholder="Tekst..."></textarea><br>
+            <input type="password" name="password_enc" placeholder="Wachtwoord"><br><br>
+            <button type="submit">Versleutel</button>
+          </form>
+          {% if enc_result %}
+            <h3>JSON-pakket:</h3>
+            <pre>{{ enc_result }}</pre>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card">
+          <h2>Decrypt</h2>
+          <form method="post" action="/decrypt">
+            <textarea name="package_json" rows="6" placeholder='Plak hier het JSON-pakket'></textarea><br>
+            <input type="password" name="password_dec" placeholder="Wachtwoord"><br><br>
+            <button type="submit">Ontsleutel</button>
+          </form>
+          {% if dec_result %}
+            <h3>Resultaat:</h3>
+            <pre>{{ dec_result }}</pre>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
